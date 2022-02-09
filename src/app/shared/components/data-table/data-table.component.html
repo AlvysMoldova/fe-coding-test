@@ -1,0 +1,30 @@
+<div class="posts-table">
+    <table class="posts-table__table">
+        <thead class="posts-table__thead">
+            <tr>
+                <th *ngFor="let column of tableColumns; let i = index">
+                    {{ column.name ? (column.name).toUpperCase() : '' }}
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let post of posts; let index = index" (mouseenter)="toggleActions(true, index)"
+                (mouseleave)="toggleActions(false, index)">
+                <td>{{ post.id }}</td>
+                <td>{{ post.title }}</td>
+                <td></td>
+                <td class="posts-table__cmd-col">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          <li class="dropdown-item">Edit</li>
+                          <li class="dropdown-item" (click)="deletePost(post.id)">Delete</li>
+                        </div>
+                      </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
