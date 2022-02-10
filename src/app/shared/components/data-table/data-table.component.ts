@@ -1,7 +1,12 @@
+import { Store } from '@ngrx/store';
+import { PostsService } from 'src/app/services/posts.service';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Post } from './../../../models/post.model';
 import { Component, Input, OnInit } from '@angular/core';
-import { DialogService } from 'ngx-bs-modal';
 import { ConfirmComponent } from '../confim/confirm.component';
+import * as postsActions from '../../../features/posts/state/posts.action';
+import * as fromPosts from '../../../features/posts/state/posts.reducer';
+
 
 interface TableColumns {
   name: string;
@@ -16,7 +21,11 @@ export class DataTableComponent implements OnInit {
   @Input()
   public posts: Post[];
 
+  public modalRef: BsModalRef;
+
   public showActionsButton: any;
+
+  public page: number = 1;
 
   public tableColumns: TableColumns[] = [
     { name: 'id' },
@@ -24,7 +33,11 @@ export class DataTableComponent implements OnInit {
     { name: 'body' },
   ];
 
-  constructor(private dialogService: DialogService) {
+  constructor(
+    private modalService: BsModalService,
+    private postsService: PostsService,
+    private store: Store<fromPosts.AppState>,
+  ) {
 
   }
 
@@ -41,14 +54,16 @@ export class DataTableComponent implements OnInit {
   }
 
   public deletePost(id: number): void {
-    console.log(id);
-    this.dialogService.addDialog(ConfirmComponent, {
-      title: '',
-      message: 'Are you sure?'
-    }).subscribe((isConfirmed) => {
-      if (isConfirmed) {
-        alert('accepted');
+    this.modalRef = this.modalService.show(ConfirmComponent, {});
+
+    this.modalRef.content.submit = (toDelete) => {
+      if (toDelete) {
+        this.store.dispatch(new postsActions.DeletePost(id));
       }
-    });
+    };
+  }
+
+  public editPost(post: Post): void {
+    this.postsService.addEditPost(post);
   }
 }

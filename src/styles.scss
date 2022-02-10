@@ -12,6 +12,23 @@
     outline: 0;
 }
 
+.button {
+    padding: 0 15px 0 15px;
+
+    &.positive {
+      color: #ffffff;
+      background-color: #6bc3df;
+      border-radius: 5px;
+      font-weight: 600;
+      margin-right: 10px;
+    }
+
+    &.simple {
+      border: 1px solid #e1e1e1;
+      background-color: #ffffff;
+    }
+  }
+
 @media (min-width: 768px) {
     .modal-dialog {
         width: 600px;

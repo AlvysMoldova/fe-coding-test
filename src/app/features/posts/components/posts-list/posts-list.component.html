@@ -1,1 +1,9 @@
-<app-data-table *ngIf="posts$" [posts]="posts$ | async"></app-data-table>
+<div class="posts">
+    <div class="posts__header">
+        <div class="header__title">
+            {{ 'posts.title' | translate }}
+        </div>
+        <button class="button positive" (click)="addNewPost()">{{ 'posts.add_post' | translate }}</button>
+    </div>
+    <app-data-table [posts]="posts$ | async"></app-data-table>
+</div>

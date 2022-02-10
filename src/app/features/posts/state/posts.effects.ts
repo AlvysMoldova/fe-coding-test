@@ -1,8 +1,10 @@
+import { TranslateService } from '@ngx-translate/core';
+import { ToastrService } from 'ngx-toastr';
 import { Injectable } from "@angular/core";
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
-import { map, mergeMap, catchError } from 'rxjs/operators';
+import { map, mergeMap, catchError, tap } from 'rxjs/operators';
 import { PostsService } from "src/app/services/posts.service";
 import * as postsActions from '../state/posts.action';
 import { Post } from "src/app/models/post.model";
@@ -12,6 +14,8 @@ export class PostsEffect {
     constructor(
         private actions$: Actions,
         private postsService: PostsService,
+        private toastr: ToastrService,
+        private translateService: TranslateService,
     ) {
     }
 
@@ -38,9 +42,15 @@ export class PostsEffect {
         ofType<postsActions.CreatePost>(postsActions.PostsActionTypes.CREATE_POST),
         map((action: postsActions.CreatePost) => action.payload),
         mergeMap((post: Post) =>
-            this.postsService.createPost(post).pipe(map((newPost: Post) => new postsActions.CreatePostSuccess(newPost))),
+            this.postsService.createPost(post).pipe(
+                tap(() => this.toastr.success(this.translateService.instant('messages.post_created'))),
+                map((newPost: Post) => new postsActions.CreatePostSuccess(newPost))
+            ),
         ),
-        catchError(err => of(new postsActions.CreatePostFail(err))),
+        catchError(err => {
+            this.toastr.error(this.translateService.instant('messages.fail_create'))
+            return of(new postsActions.CreatePostFail(err))
+        }),
     )
 
     @Effect()
@@ -48,12 +58,17 @@ export class PostsEffect {
         ofType<postsActions.UpdatePost>(postsActions.PostsActionTypes.UPDATE_POST),
         map((action: postsActions.UpdatePost) => action.payload),
         mergeMap((post: Post) =>
-            this.postsService.updatePost(post).pipe(map((updatePost: Post) => new postsActions.UpdatePostSuccess({
-                id: updatePost.id,
-                changes: updatePost,
-            }))),
+            this.postsService.updatePost(post).pipe(
+                tap(() => this.toastr.success(this.translateService.instant('messages.post_updated'))),
+                map((updatePost: Post) => new postsActions.UpdatePostSuccess({
+                    id: updatePost.id,
+                    changes: updatePost,
+                }))),
         ),
-        catchError(err => of(new postsActions.UpdatePostFail(err))),
+        catchError(err => {
+            this.toastr.error(this.translateService.instant('messages.fail_update'))
+            return of(new postsActions.UpdatePostFail(err))
+        }),
     )
 
     @Effect()
@@ -61,9 +76,15 @@ export class PostsEffect {
         ofType<postsActions.DeletePost>(postsActions.PostsActionTypes.DELETE_POST),
         map((action: postsActions.DeletePost) => action.payload),
         mergeMap((id: number) =>
-            this.postsService.deletePost(id).pipe(map(() => new postsActions.DeletePostSuccess(id))),
+            this.postsService.deletePost(id).pipe(
+                tap(() => this.toastr.success(this.translateService.instant('messages.post_deleted'))),
+                map(() => new postsActions.DeletePostSuccess(id))
+            ),
         ),
-        catchError(err => of(new postsActions.DeletePostFail(err))),
+        catchError(err => {
+            this.toastr.error(this.translateService.instant('messages.fail_delete'))
+            return of(new postsActions.DeletePostFail(err))
+        }),
     )
 
 } 

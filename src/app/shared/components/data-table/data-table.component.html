@@ -3,28 +3,29 @@
         <thead class="posts-table__thead">
             <tr>
                 <th *ngFor="let column of tableColumns; let i = index">
-                    {{ column.name ? (column.name).toUpperCase() : '' }}
+                    {{ column.name ? ('posts.' + column.name | translate).toUpperCase() : '' }}
                 </th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let post of posts; let index = index" (mouseenter)="toggleActions(true, index)"
+            <tr *ngFor="let post of posts | paginate: { itemsPerPage: 10, currentPage: page }; let index = index" (mouseenter)="toggleActions(true, index)"
                 (mouseleave)="toggleActions(false, index)">
                 <td>{{ post.id }}</td>
                 <td>{{ post.title }}</td>
-                <td></td>
+                <td class="posts-table__body-text">{{ post.body }}</td>
                 <td class="posts-table__cmd-col">
                     <div class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                          <li class="dropdown-item">Edit</li>
-                          <li class="dropdown-item" (click)="deletePost(post.id)">Delete</li>
+                          <li class="dropdown-item" (click)="editPost(post)">{{ 'buttons.edit' | translate }}</li>
+                          <li class="dropdown-item" (click)="deletePost(post.id)">{{ 'buttons.cancel' | translate }}</li>
                         </div>
                       </div>
                 </td>
             </tr>
         </tbody>
     </table>
+    <pagination-controls class="posts-table__pagination" (pageChange)="page = $event"></pagination-controls>
 </div>

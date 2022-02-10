@@ -1,34 +1,29 @@
 import { Component } from '@angular/core';
-import { DialogComponent, DialogService } from "ngx-bs-modal";
+import { BsModalRef } from 'ngx-bootstrap/modal';
 export interface ConfirmModel {
   title:string;
   message:string;
 }
 @Component({  
     selector: 'confirm',
-    template: `<div class="modal-dialog">
-                <div class="modal-content">
-                   <div class="modal-header">
-                     <button type="button" class="close" (click)="close()" >&times;</button>
-                   </div>
-                   <div class="modal-body">
-                     <p>{{message || 'Are you sure?'}}</p>
-                   </div>
-                   <div class="modal-footer">
-                     <button type="button" class="btn btn-secondary" (click)="confirm()">OK</button>
-                     <button type="button" class="btn btn-default" (click)="close()" >Cancel</button>
-                   </div>
-                 </div>
-              </div>`
+    templateUrl: './confirm.component.html',
+    styleUrls: ['./confirm.component.scss'],
 })
-export class ConfirmComponent extends DialogComponent<ConfirmModel, boolean> implements ConfirmModel {
-  title: string;
-  message: string;
-  constructor(dialogService: DialogService) {
-    super(dialogService);
+export class ConfirmComponent {
+  public submit: any;
+  public message: string;
+
+  constructor(private modalRef: BsModalRef) {
+
   }
-  confirm() {
-    this.result = true;
-    this.close();
+
+  public onSubmit() {
+    this.submit(true);
+    this.modalRef.hide();
+  }
+
+  public onClose() {
+    this.submit(false);
+    this.modalRef.hide();
   }
 }

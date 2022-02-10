@@ -25,6 +25,13 @@ $cancelColor: #d26666;
     padding-left: 0px !important;
   }
 
+  &__body-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 700px;
+  }
+
   &__table {
     @include table-fonts;
 
@@ -55,8 +62,8 @@ $cancelColor: #d26666;
         font-weight: 500;
         font-size: 13px;
         line-height: 16px;
-        color: #4C4C4C;
-        border: 1px solid transparent;;
+        color: #4c4c4c;
+        border: 1px solid transparent;
 
         &:hover {
           td {
@@ -85,23 +92,12 @@ $cancelColor: #d26666;
     }
   }
 
-  &__menu-trigger {
-    border: none;
-  }
-
-  &__custom-dropdown-item {
-    @include table-fonts;
-    @include dropdown-item;
-    color: #4C4C4C;
-
-    &--cancel {
-      @include table-fonts;
-      @include dropdown-item;
-      color: $cancelColor;
-    }
+  &__pagination {
+    display: flex;
+    justify-content: center;
   }
 }
 
 .btn-secondary {
-    background-color: #cccccc;
+  background-color: #cccccc;
 }

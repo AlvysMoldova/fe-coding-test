@@ -1,1 +1,12 @@
-<p>posts-add-edit works!</p>
+<div class="post">
+    <span>{{ 'posts.new_post' | translate }}</span>
+
+    <form [formGroup]="form">
+        <formly-form class="post__form" [form]="form" [fields]="fields" [model]="model"></formly-form>
+    </form>
+
+    <div class="post__buttons">
+        <div class="button positive" (click)="onSubmit()">{{ 'buttons.ok' | translate }}</div>
+        <div class="button simple" (click)="onClose()">{{ 'buttons.cancel' | translate }}</div>
+    </div>
+</div>

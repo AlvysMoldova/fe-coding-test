@@ -12,4 +12,9 @@ export class AuthService {
   public get token(): string {
     return this._token;
   }
+
+  public isAuthenticated(): boolean {
+    return true;
+  }
+
 }
