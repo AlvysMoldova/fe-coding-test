@@ -9,6 +9,48 @@
   margin-top: 16px;
 }
 
+.card {
+  all: unset;
+  border-radius: 4px;
+  border: 1px solid #eee;
+  background-color: #fafafa;
+  min-height: 40px;
+  width: 100%;
+  margin-bottom: 16px;
+  padding: 16px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  transition: all 0.2s ease-in-out;
+  line-height: 24px;
+
+  &.card-small {
+    min-height: 16px;
+
+    &:hover {
+      background: #1776d12e;
+      cursor: pointer;
+    }
+  }
+
+  svg {
+    min-width: 32px;
+    margin-right: 8px;
+  }
+
+  svg.material-icons path {
+    fill: #888;
+  }
+
+  .card-title {
+    margin-top: 0
+  }
+
+  .card-description {
+    margin-bottom: 0;
+  }
+}
+
 @media screen and (max-width: 767px) {
   .card-container > *:not(.circle-link) {
     width: 100%;
