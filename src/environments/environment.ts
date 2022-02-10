@@ -5,7 +5,6 @@
 export const environment = {
   production: false,
   title: 'FE Coding Test',
-  apiURL: 'https://gorest.co.in/public/v2/',
   accessToken: '50ae9d72203ddcf440f596942726d62bf9ebdc44cbedec56aba8556f03c91808',
 };
 
