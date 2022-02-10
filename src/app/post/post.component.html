@@ -1,0 +1,27 @@
+<h2>Post edit</h2>
+<p>I am diving in Angular 😱</p>
+
+<p *ngIf="!loaded">Loading...</p>
+
+<div *ngIf="loaded" style="margin-top: 32px;">
+    <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+        <div class="group">
+            <input type="text" required="required" formControlName="title" />
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label>Name</label>
+        </div>
+        <div class="group">
+            <textarea type="textarea" autosize formControlName="body"></textarea>
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label>Body</label>
+        </div>
+
+        <div class="buttons">
+            <button class="btn btn-cancel" type="button" routerLink="/posts">Cancel</button>
+            <button class="btn btn-submit" type="submit">Submit</button>
+            <button class="btn btn-remove" type="button" (click)="onRemove()">Remove</button>
+        </div>
+    </form>
+</div>
