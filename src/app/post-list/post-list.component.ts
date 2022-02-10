@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Post } from './post';
 import { PostListService } from './post-list.service';
@@ -12,7 +13,10 @@ import { PostListService } from './post-list.service';
 export class PostListComponent implements OnInit {
   posts: Post[] = [];
 
-  constructor(private postListService: PostListService) {}
+  constructor(
+      public router: Router,
+      private postListService: PostListService
+  ) {}
 
   ngOnInit(): void {
     this.getPosts();
