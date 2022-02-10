@@ -1,0 +1,23 @@
+{
+    "posts": {
+        "id": "ID",
+        "body": "Description",
+        "title": "Title",
+        "add_post": "Add post",
+        "new_post": "New Post"
+    },
+    "buttons": {
+        "ok": "Ok",
+        "cancel": "Cancel",
+        "edit": "Edit"
+    },
+    "messages": {
+        "fill_form": "Fill the form",
+        "post_created": "Post was created",
+        "post_updated": "Post was updated",
+        "post_deleted": "Post was deleted",
+        "fail_create": "Failed to create post",
+        "fail_update": "Failed to update post",
+        "fail_delete": "Failed to delete post"
+    }
+}

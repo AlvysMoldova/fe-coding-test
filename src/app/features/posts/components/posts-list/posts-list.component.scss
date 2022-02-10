@@ -1,0 +1,17 @@
+.posts {
+    padding: 20px;
+
+    &__header {
+        height: 50px;
+        width: calc(100% - 30px);
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+.header__title {
+    font-family: Montserrat;
+    font-style: normal;
+    font-size: 18px;
+    font-weight: 600px;
+}

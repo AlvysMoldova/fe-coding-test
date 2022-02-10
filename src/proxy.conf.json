@@ -1,0 +1,8 @@
+{
+    "/public/v2/*": {
+        "target": "https://gorest.co.in/public/",
+        "secure": false,
+        "logLevel": "debug",
+        "changeOrigin": true
+    }
+}
