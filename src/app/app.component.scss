@@ -1,0 +1,14 @@
+.container {
+  display: flex;
+
+  navbar {
+    display: block;
+    border: solid 1px red;
+    flex: 1 1 25%;
+    margin-left: auto;
+  }
+
+  main {
+    flex: 1 1 80%;
+  }
+}
