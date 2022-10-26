@@ -1,0 +1,58 @@
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpHeaders,
+} from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { catchError, Observable, throwError } from 'rxjs';
+import { devEnvironment } from 'src/environments/environment.prod';
+
+/**
+ * Custom http client which can be used in order
+ * to provide request options or handle errors in
+ * a generic way
+ */
+@Injectable({ providedIn: 'root' })
+export class ApiService {
+  constructor(private _http: HttpClient) {}
+
+  /**
+   * Default options and headers
+   */
+  private _defaultOptions = {
+    responseType: 'json',
+    headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
+  };
+
+  /**
+   * Performs a `GET` request to `https://gorest.co.in/` api.
+   */
+  get(url: string, requestOptions?): Observable<any> {
+    let options = this._buildHttpOptions(requestOptions);
+    let endpoint = this.buildUrl(url);
+
+    return this._http
+      .get(endpoint, options)
+      .pipe(catchError((httpEvent) => this._handleHttpError(httpEvent)));
+  }
+
+  private _handleHttpError(
+    httpErrorResponse: HttpErrorResponse
+  ): Observable<never> {
+    //TODO: Add custom http error handling here
+    return throwError(() => httpErrorResponse.error);
+  }
+
+  private _buildHttpOptions(requestOptions): any {
+    let options = { ...this._defaultOptions, ...requestOptions };
+    options.headers = new HttpHeaders(options.headers);
+    return options;
+  }
+
+  /**
+   * Gets `full url` to `https://gorest.co.in/` API.
+   */
+  buildUrl(urlChunk: string): string {
+    return `${devEnvironment.apiUrl}${urlChunk}`;
+  }
+}
