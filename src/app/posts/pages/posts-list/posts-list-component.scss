@@ -1,7 +1,7 @@
 @use "/src/variables.scss" as vars;
 
 .wrapper {
-  margin-top: 1rem;
+  margin: 1rem 3rem 3rem 0;
 
   .post {
     margin: 1rem;
@@ -17,7 +17,6 @@
 
       .title {
         display: inline-block;
-        font-weight: bold;
         font-size: 16px;
       }
 

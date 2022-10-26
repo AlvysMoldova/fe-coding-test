@@ -5,6 +5,10 @@ import { AppCommonModule } from '../common/common.module';
 import { PostsListComponent } from './pages/posts-list';
 import { PostsRoutingModule } from './posts-routing.module';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { AngularEditorModule } from '@kolkov/angular-editor';
+import { AddEditPostComponent } from './pages/add-edit-post/add-edit-post';
+import { ReactiveFormsModule } from '@angular/forms';
+import { SafeHtmlPipeModule } from '../common/pipes';
 
 @NgModule({
   imports: [
@@ -13,7 +17,10 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     AppCommonModule,
     MatButtonModule,
     MatTooltipModule,
+    AngularEditorModule,
+    ReactiveFormsModule,
+    SafeHtmlPipeModule,
   ],
-  declarations: [PostsListComponent],
+  declarations: [PostsListComponent, AddEditPostComponent],
 })
 export class PostsModule {}

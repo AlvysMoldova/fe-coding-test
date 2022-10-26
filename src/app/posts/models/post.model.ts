@@ -11,3 +11,8 @@ export class Post {
     this.body = post.body;
   }
 }
+
+export interface PostDto {
+  title: string;
+  body: string;
+}

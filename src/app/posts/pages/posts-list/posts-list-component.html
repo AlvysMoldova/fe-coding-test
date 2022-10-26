@@ -1,7 +1,7 @@
 <div class="wrapper">
   <div *ngFor="let post of posts" class="post">
     <div class="toolbar">
-      <span class="title">{{post.title}}</span>
+      <span class="title" [innerHtml]="post.title | safeHtml"></span>
       <div class="actions">
         <div class="edit">
           <button mat-icon-button (click)="editPost(post.id)">
@@ -25,6 +25,6 @@
         </div>
       </div>
     </div>
-    <div class="post-content">{{post.body}}</div>
+    <div class="post-content" [innerHtml]="post.body |safeHtml"></div>
   </div>
 </div>

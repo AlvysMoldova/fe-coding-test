@@ -12,7 +12,7 @@ import { PostsService } from '../../services/posts.service';
   styleUrls: ['./posts-list-component.scss'],
 })
 export class PostsListComponent extends DestroyableComponent implements OnInit {
-  posts!: Post[];
+  protected posts!: Post[];
 
   constructor(
     private _postsService: PostsService,

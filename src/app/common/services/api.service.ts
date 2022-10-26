@@ -37,6 +37,18 @@ export class ApiClient {
   }
 
   /**
+   * Performs a `PATCH` request to `https://gorest.co.in/` api.
+   */
+  patch(url: string, body: any, requestOptions?): Observable<any> {
+    let options = this._buildHttpOptions(requestOptions);
+    let endpoint = this.buildUrl(url);
+
+    return this._http
+      .patch(endpoint, body, options)
+      .pipe(catchError((httpEvent) => this._handleHttpError(httpEvent)));
+  }
+
+  /**
    * Performs a `DELETE` request to `https://gorest.co.in/` api.
    */
   delete(url: string, requestOptions?): Observable<any> {

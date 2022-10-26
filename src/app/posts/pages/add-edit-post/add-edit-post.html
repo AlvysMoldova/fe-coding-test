@@ -1,0 +1,30 @@
+<div class="wrapper">
+  <form [formGroup]="postForm">
+    <div class="title-editor">
+      <span>Edit title</span>
+      <angular-editor
+        id="title-editor"
+        formControlName="title"
+        [config]="titleEditorConfig"
+      ></angular-editor>
+    </div>
+
+    <div class="body-editor">
+      <span>Edit content</span>
+      <angular-editor
+        id="body"
+        formControlName="body"
+        [config]="contentEditorConfig"
+      ></angular-editor>
+    </div>
+  </form>
+
+  <div class="actions">
+    <div class="cancel">
+      <button mat-flat-button [routerLink]="'posts'">Cancel</button>
+    </div>
+    <div class="save">
+      <button mat-flat-button (click)="saveChanges()">Save changes</button>
+    </div>
+  </div>
+</div>
