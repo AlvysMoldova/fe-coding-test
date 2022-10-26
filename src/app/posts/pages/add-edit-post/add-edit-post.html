@@ -1,5 +1,17 @@
 <div class="wrapper">
   <form [formGroup]="postForm">
+    <div class="author">
+      <span>Author</span>
+      <mat-form-field appearance="fill">
+        <mat-label>Post author</mat-label>
+        <mat-select [value]="postAuthorId" formControlName="user_id">
+          <mat-option *ngFor="let user of users" [value]="user.id"
+            >{{user.name}}</mat-option
+          >
+        </mat-select>
+      </mat-form-field>
+    </div>
+
     <div class="title-editor">
       <span>Edit title</span>
       <angular-editor
@@ -24,7 +36,13 @@
       <button mat-flat-button [routerLink]="'posts'">Cancel</button>
     </div>
     <div class="save">
-      <button mat-flat-button (click)="saveChanges()">Save changes</button>
+      <button
+        mat-flat-button
+        (click)="saveChanges()"
+        [disabled]="postForm.invalid"
+      >
+        Save changes
+      </button>
     </div>
   </div>
 </div>

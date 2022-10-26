@@ -8,6 +8,8 @@ import {
 import { Observable } from 'rxjs';
 import { authToken } from 'auth-token';
 
+//TODO: Add custom error handler and ErrorInterceptor
+
 @Injectable()
 export class JWTInterceptor implements HttpInterceptor {
   intercept(

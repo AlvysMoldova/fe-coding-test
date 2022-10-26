@@ -31,5 +31,7 @@
     </a>
   </nav>
 
-  <button mat-flat-button class="post-btn">New Post</button>
+  <button mat-flat-button class="post-btn" [routerLink]="['posts', 'add']">
+    New Post
+  </button>
 </aside>

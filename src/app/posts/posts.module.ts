@@ -9,6 +9,7 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
 import { AddEditPostComponent } from './pages/add-edit-post/add-edit-post';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SafeHtmlPipeModule } from '../common/pipes';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   imports: [
@@ -20,6 +21,7 @@ import { SafeHtmlPipeModule } from '../common/pipes';
     AngularEditorModule,
     ReactiveFormsModule,
     SafeHtmlPipeModule,
+    MatSelectModule,
   ],
   declarations: [PostsListComponent, AddEditPostComponent],
 })

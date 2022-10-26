@@ -2,13 +2,20 @@
 
 .default-text {
   display: inline-block;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: bold;
   margin-bottom: 0.5rem;
 }
 
 .wrapper {
   margin: 1rem 3rem 3rem 0;
+
+  .author {
+    span {
+      @extend .default-text;
+      margin-right: 1rem;
+    }
+  }
 
   .title-editor {
     margin-bottom: 2rem;
@@ -34,8 +41,15 @@
       align-items: center;
     }
 
-    .save .mat-flat-button {
-      background-color: vars.$dodge-blue;
+    .save {
+      & .mat-flat-button {
+        color: #fff;
+        background-color: vars.$dodge-blue;
+      }
+      & button:disabled {
+        background-color: #67aede;
+        color: #e7e7e7;
+      }
     }
 
     .cancel .mat-flat-button {

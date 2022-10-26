@@ -1,18 +1,8 @@
-export class Post {
+export interface Post {
   id: number;
-  userId: number;
-  title: string;
-  body: string;
-
-  constructor(post) {
-    this.id = post.id;
-    this.userId = post.user_id;
-    this.title = post.title;
-    this.body = post.body;
-  }
-}
-
-export interface PostDto {
+  user_id: number;
   title: string;
   body: string;
 }
+
+export type PostDto = Pick<Post, 'user_id' | 'title' | 'body'>;

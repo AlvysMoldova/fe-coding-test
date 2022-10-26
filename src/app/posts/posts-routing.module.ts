@@ -19,6 +19,10 @@ export const PostsRoutingModule: ModuleWithProviders<RouterModule> =
       ],
     },
     {
+      path: 'add',
+      component: AddEditPostComponent,
+    },
+    {
       path: '**',
       redirectTo: '',
     },

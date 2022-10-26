@@ -8,15 +8,17 @@ export class PostsService {
   constructor(private _apiClient: ApiClient) {}
 
   getPost(postId: number): Observable<Post> {
-    return this._apiClient
-      .get(`posts/${postId}`)
-      .pipe(map((post) => new Post(post)));
+    return this._apiClient.get(`posts/${postId}`).pipe(map((p) => p as Post));
   }
 
   getAllPosts(): Observable<Post[]> {
     return this._apiClient
       .get('posts')
-      .pipe(map((posts) => posts.map((p) => new Post(p))));
+      .pipe(map((posts) => posts.map((p) => p as Post)));
+  }
+
+  addPost(post: PostDto) {
+    return this._apiClient.post('posts', post);
   }
 
   editPost(postId: number, body: PostDto) {
