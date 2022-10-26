@@ -10,6 +10,7 @@ import { AddEditPostComponent } from './pages/add-edit-post/add-edit-post';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SafeHtmlPipeModule } from '../common/pipes';
 import { MatSelectModule } from '@angular/material/select';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 @NgModule({
   imports: [
@@ -22,6 +23,7 @@ import { MatSelectModule } from '@angular/material/select';
     ReactiveFormsModule,
     SafeHtmlPipeModule,
     MatSelectModule,
+    ScrollingModule,
   ],
   declarations: [PostsListComponent, AddEditPostComponent],
 })

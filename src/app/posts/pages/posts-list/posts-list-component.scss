@@ -1,7 +1,9 @@
 @use "/src/variables.scss" as vars;
 
 .wrapper {
-  margin: 1rem 3rem 3rem 0;
+  padding: 1rem 3rem 3rem 0;
+  height: 90vh;
+  overflow-y: scroll;
 
   .post {
     margin: 1rem;

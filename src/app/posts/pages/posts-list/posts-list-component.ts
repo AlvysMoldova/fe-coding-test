@@ -12,6 +12,7 @@ import { PostsService } from '../../services/posts.service';
   styleUrls: ['./posts-list-component.scss'],
 })
 export class PostsListComponent extends DestroyableComponent implements OnInit {
+  private _pageIndex = 1;
   protected posts!: Post[];
 
   constructor(
@@ -54,9 +55,18 @@ export class PostsListComponent extends DestroyableComponent implements OnInit {
     this._router.navigate(['/', 'posts', 'edit', postId]);
   }
 
+  handleScroll(event) {
+    if (
+      event.target.offsetHeight + event.target.scrollTop >=
+      event.target.scrollHeight - 1
+    ) {
+      this._loadPosts();
+    }
+  }
+
   private _loadPosts() {
     this._postsService
-      .getAllPosts()
+      .getAllPosts(this._pageIndex++)
       .pipe(first())
       .subscribe((posts) => {
         this.posts = posts;

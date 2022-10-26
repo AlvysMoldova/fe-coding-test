@@ -11,9 +11,9 @@ export class PostsService {
     return this._apiClient.get(`posts/${postId}`).pipe(map((p) => p as Post));
   }
 
-  getAllPosts(): Observable<Post[]> {
+  getAllPosts(page: number): Observable<Post[]> {
     return this._apiClient
-      .get('posts')
+      .get('posts', { params: { page } })
       .pipe(map((posts) => posts.map((p) => p as Post)));
   }
 

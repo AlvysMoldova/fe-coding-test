@@ -1,4 +1,5 @@
-<div class="wrapper">
+<!-- TODO: Add virtual scroll -->
+<div class="wrapper" (scroll)="handleScroll($event)">
   <div *ngFor="let post of posts" class="post">
     <div class="toolbar">
       <span class="title" [innerHtml]="post.title | safeHtml"></span>
