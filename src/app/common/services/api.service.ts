@@ -5,15 +5,15 @@ import {
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
-import { devEnvironment } from 'src/environments/environment.prod';
+import { environment } from 'src/environments/environment.prod';
 
 /**
  * Custom http client which can be used in order
- * to provide request options or handle errors in
+ * to provide request options or to handle errors in
  * a generic way
  */
 @Injectable({ providedIn: 'root' })
-export class ApiService {
+export class ApiClient {
   constructor(private _http: HttpClient) {}
 
   /**
@@ -53,6 +53,6 @@ export class ApiService {
    * Gets `full url` to `https://gorest.co.in/` API.
    */
   buildUrl(urlChunk: string): string {
-    return `${devEnvironment.apiUrl}${urlChunk}`;
+    return `${environment.apiUrl}${urlChunk}`;
   }
 }

@@ -1,6 +1,6 @@
 import { EnvironmentalVariables } from 'src/app/common/interfaces';
 
-export const devEnvironment: EnvironmentalVariables = {
+export const environment: EnvironmentalVariables = {
   production: true,
   apiUrl: 'https://gorest.co.in/public/v2/',
 };
