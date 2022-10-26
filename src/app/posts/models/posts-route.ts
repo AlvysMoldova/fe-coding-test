@@ -1,3 +1,3 @@
 export enum PostsRoute {
-  Posts = 'Posts',
+  Posts = 'posts',
 }

@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 export const PostsRoutingModule: ModuleWithProviders<RouterModule> =
   RouterModule.forChild([
     {
-      path: PostsRoute.Posts,
+      path: '',
       component: PostsListComponent,
     },
     {

@@ -5,10 +5,17 @@ import { RootRouting } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CommonModule } from './common/common.module';
 import { JWTInterceptor } from './common/interceptors';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, HttpClientModule, RootRouting, CommonModule],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    RootRouting,
+    CommonModule,
+    BrowserAnimationsModule,
+  ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

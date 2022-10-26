@@ -1,18 +1,30 @@
-<aside class="navbar">
+<aside class="nav-container">
+  <span class="logo">#ashtag</span>
   <nav>
-    <a
-      class="nav-item"
-      draggable="false"
-      routerLinkActive="active"
-      [routerLink]="['/', 'posts']"
-      >Home
+    <a class="link" routerLinkActive="active" [routerLink]="['/', 'posts']">
+      <span class="material-symbols-outlined nav-icon"> list_alt </span>
+      <span>Posts</span>
     </a>
-    <a
-      class="nav-item"
-      draggable="false"
-      routerLinkActive="active"
-      [routerLink]="['/', 'sss']"
-      >Test
+    <a class="link" routerLinkActive="active">
+      <span class="material-symbols-outlined nav-icon"> receipt_long </span>
+      <span>Only</span>
+    </a>
+
+    <a class="link" routerLinkActive="active">
+      <span class="material-symbols-outlined nav-icon"> receipt_long </span>
+      <span>Posts</span>
+    </a>
+
+    <a class="link" routerLinkActive="active">
+      <span class="material-symbols-outlined nav-icon"> receipt_long </span>
+      <span>Work</span>
+    </a>
+
+    <a class="link" routerLinkActive="active">
+      <span class="material-symbols-outlined nav-icon"> receipt_long </span>
+      <span>For Now</span>
     </a>
   </nav>
+
+  <button mat-flat-button class="post-btn">Post</button>
 </aside>

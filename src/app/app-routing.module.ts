@@ -13,5 +13,5 @@ const routes: Routes = [
 
 export const RootRouting: ModuleWithProviders<RouterModule> =
   RouterModule.forRoot(routes, {
-    // enableTracing: true,
+    enableTracing: true,
   });

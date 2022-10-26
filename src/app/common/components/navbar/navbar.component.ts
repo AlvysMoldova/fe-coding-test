@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'navbar',
@@ -6,3 +8,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent {}
+
+@NgModule({
+  imports: [RouterModule, MatButtonModule],
+  declarations: [NavbarComponent],
+  exports: [NavbarComponent],
+})
+export class NavbarModule {}
