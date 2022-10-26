@@ -56,17 +56,25 @@ export class PostsListComponent extends DestroyableComponent implements OnInit {
   }
 
   handleScroll(event) {
+    //top of the page reached
+    if (!event.target.scrollTop && this._pageIndex >= 2) {
+      this._pageIndex--;
+      this._loadPosts();
+    }
+
+    //bottom of the page reached
     if (
       event.target.offsetHeight + event.target.scrollTop >=
       event.target.scrollHeight - 1
     ) {
+      this._pageIndex++;
       this._loadPosts();
     }
   }
 
   private _loadPosts() {
     this._postsService
-      .getAllPosts(this._pageIndex++)
+      .getAllPosts(this._pageIndex)
       .pipe(first())
       .subscribe((posts) => {
         this.posts = posts;
