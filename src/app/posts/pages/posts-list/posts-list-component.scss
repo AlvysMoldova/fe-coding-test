@@ -22,8 +22,13 @@
       }
 
       .actions {
+        display: flex;
         .delete .delete-icon {
           color: vars.$bittersweet;
+        }
+
+        .edit .edit-icon {
+          color: vars.$dodge-blue;
         }
       }
     }

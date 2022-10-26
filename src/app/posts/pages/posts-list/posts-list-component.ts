@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { combineLatest, first, of, switchMap } from 'rxjs';
 import { DestroyableComponent } from 'src/app/common/components/destroyable-component';
 import { LazyLoadedDialogService } from 'src/app/common/services';
@@ -15,7 +16,8 @@ export class PostsListComponent extends DestroyableComponent implements OnInit {
 
   constructor(
     private _postsService: PostsService,
-    private _lazyDialog: LazyLoadedDialogService
+    private _lazyDialog: LazyLoadedDialogService,
+    private _router: Router
   ) {
     super();
   }
@@ -24,7 +26,7 @@ export class PostsListComponent extends DestroyableComponent implements OnInit {
     this._loadPosts();
   }
 
-  deletePost(id: number) {
+  deletePost(postId: number) {
     this._lazyDialog
       .openDialog(import('src/app/lazy-dialogs/delete-post'))
       .then((ref) =>
@@ -35,7 +37,7 @@ export class PostsListComponent extends DestroyableComponent implements OnInit {
               confirmed
                 ? combineLatest([
                     of(confirmed),
-                    this._postsService.deletePost(id),
+                    this._postsService.deletePost(postId),
                   ])
                 : of([])
             )
@@ -46,6 +48,10 @@ export class PostsListComponent extends DestroyableComponent implements OnInit {
             }
           })
       );
+  }
+
+  editPost(postId: number) {
+    this._router.navigate(['/', 'posts', 'edit', postId]);
   }
 
   private _loadPosts() {

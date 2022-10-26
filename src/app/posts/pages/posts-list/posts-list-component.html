@@ -3,6 +3,16 @@
     <div class="toolbar">
       <span class="title">{{post.title}}</span>
       <div class="actions">
+        <div class="edit">
+          <button mat-icon-button (click)="editPost(post.id)">
+            <span
+              class="material-symbols-outlined edit-icon"
+              matTooltip="Edit post"
+            >
+              edit
+            </span>
+          </button>
+        </div>
         <div class="delete">
           <button mat-icon-button (click)="deletePost(post.id)">
             <span
