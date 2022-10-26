@@ -1,0 +1,41 @@
+@use "/src/variables.scss" as vars;
+
+.wrapper {
+  .title,
+  .content {
+    display: block;
+    border-bottom: vars.$border;
+  }
+
+  .title {
+    font-size: 20px;
+    padding-bottom: 0.5rem;
+  }
+
+  .content {
+    padding: 1rem 0;
+  }
+
+  .actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.7rem;
+
+    .mat-flat-button {
+      display: flex;
+      align-items: center;
+      height: 30px;
+    }
+
+    .delete .mat-flat-button {
+      background-color: vars.$bittersweet;
+      color: #fff;
+    }
+
+    .cancel .mat-flat-button {
+      background-color: #fff;
+      color: #000;
+      border: vars.$border;
+    }
+  }
+}

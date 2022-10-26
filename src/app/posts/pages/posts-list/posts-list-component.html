@@ -1,0 +1,30 @@
+<div class="wrapper" (scroll)="handleScroll($event)">
+  <div *ngFor="let post of posts" class="post">
+    <div class="toolbar">
+      <span class="title" [innerHtml]="post.title | safeHtml"></span>
+      <div class="actions">
+        <div class="edit">
+          <button mat-icon-button (click)="editPost(post.id)">
+            <span
+              class="material-symbols-outlined edit-icon"
+              matTooltip="Edit post"
+            >
+              edit
+            </span>
+          </button>
+        </div>
+        <div class="delete">
+          <button mat-icon-button (click)="deletePost(post.id)">
+            <span
+              class="material-symbols-outlined delete-icon"
+              matTooltip="Delete post"
+            >
+              delete
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="post-content" [innerHtml]="post.body |safeHtml"></div>
+  </div>
+</div>

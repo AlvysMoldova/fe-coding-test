@@ -1,0 +1,37 @@
+@use "/src/variables.scss" as vars;
+
+.wrapper {
+  padding: 1rem 3rem 3rem 0;
+  height: 90vh;
+  overflow-y: scroll;
+
+  .post {
+    margin: 1rem;
+    border: vars.$border;
+    padding: 0.5rem 1rem;
+
+    .toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      margin-bottom: 1rem;
+
+      .title {
+        display: inline-block;
+        font-size: 16px;
+      }
+
+      .actions {
+        display: flex;
+        .delete .delete-icon {
+          color: vars.$bittersweet;
+        }
+
+        .edit .edit-icon {
+          color: vars.$dodge-blue;
+        }
+      }
+    }
+  }
+}

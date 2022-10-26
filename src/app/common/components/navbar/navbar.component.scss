@@ -1,0 +1,68 @@
+@use "/src/variables.scss" as vars;
+
+@mixin nav-item {
+  display: flex;
+  align-items: center;
+}
+
+.nav-container {
+  position: fixed;
+  user-select: none;
+
+  .logo {
+    @include nav-item;
+    &::after {
+      content: "ashtag";
+    }
+    font-weight: bold;
+    font-size: 25px;
+    color: vars.$dodge-blue;
+    padding: 1rem 3rem;
+  }
+
+  .link {
+    @include nav-item;
+    color: black;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 1rem 3rem;
+
+    .nav-icon {
+      margin-right: 0.5rem;
+      font-size: 25px;
+    }
+  }
+}
+
+.active {
+  font-weight: bold;
+}
+
+.post-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  margin: 2rem auto;
+  font-size: 16px;
+  width: 155px;
+  border-radius: 9999px;
+  background-color: vars.$dodge-blue;
+  color: white;
+}
+
+@media (max-width: 1000px) {
+  .nav-container {
+    a span:nth-of-type(2) {
+      display: none;
+    }
+
+    .logo::after {
+      content: "";
+    }
+  }
+
+  .post-btn {
+    width: inherit;
+  }
+}
