@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { takeUntil } from 'rxjs';
+import { combineLatest, first, of, switchMap } from 'rxjs';
 import { DestroyableComponent } from 'src/app/common/components/destroyable-component';
+import { LazyLoadedDialogService } from 'src/app/common/services';
 import { Post } from '../../models';
 import { PostsService } from '../../services/posts.service';
 
@@ -12,14 +13,45 @@ import { PostsService } from '../../services/posts.service';
 export class PostsListComponent extends DestroyableComponent implements OnInit {
   posts!: Post[];
 
-  constructor(private _postsService: PostsService) {
+  constructor(
+    private _postsService: PostsService,
+    private _lazyDialog: LazyLoadedDialogService
+  ) {
     super();
   }
 
   ngOnInit(): void {
+    this._loadPosts();
+  }
+
+  deletePost(id: number) {
+    this._lazyDialog
+      .openDialog(import('src/app/lazy-dialogs/delete-post'))
+      .then((ref) =>
+        ref
+          .afterClosed()
+          .pipe(
+            switchMap((confirmed) =>
+              confirmed
+                ? combineLatest([
+                    of(confirmed),
+                    this._postsService.deletePost(id),
+                  ])
+                : of([])
+            )
+          )
+          .subscribe(([confirmed]) => {
+            if (confirmed) {
+              this._loadPosts();
+            }
+          })
+      );
+  }
+
+  private _loadPosts() {
     this._postsService
       .getAllPosts()
-      .pipe(takeUntil(this.destroy$))
+      .pipe(first())
       .subscribe((posts) => {
         this.posts = posts;
       });

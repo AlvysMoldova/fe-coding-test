@@ -8,11 +8,24 @@
     border: vars.$border;
     padding: 0.5rem 1rem;
 
-    .title {
-      display: inline-block;
-      font-weight: bold;
-      font-size: 16px;
+    .toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
       margin-bottom: 1rem;
+
+      .title {
+        display: inline-block;
+        font-weight: bold;
+        font-size: 16px;
+      }
+
+      .actions {
+        .delete .delete-icon {
+          color: vars.$bittersweet;
+        }
+      }
     }
   }
 }

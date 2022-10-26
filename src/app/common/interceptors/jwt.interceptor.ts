@@ -15,7 +15,7 @@ export class JWTInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     req = req.clone({
-      headers: req.headers.append('Authorization', authToken),
+      headers: req.headers.append('Authorization', `Bearer ${authToken}`),
     });
     return next.handle(req);
   }

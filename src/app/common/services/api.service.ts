@@ -36,6 +36,18 @@ export class ApiClient {
       .pipe(catchError((httpEvent) => this._handleHttpError(httpEvent)));
   }
 
+  /**
+   * Performs a `DELETE` request to `https://gorest.co.in/` api.
+   */
+  delete(url: string, requestOptions?): Observable<any> {
+    let options = this._buildHttpOptions(requestOptions);
+    let endpoint = this.buildUrl(url);
+
+    return this._http
+      .delete(endpoint, options)
+      .pipe(catchError((httpEvent) => this._handleHttpError(httpEvent)));
+  }
+
   private _handleHttpError(
     httpErrorResponse: HttpErrorResponse
   ): Observable<never> {

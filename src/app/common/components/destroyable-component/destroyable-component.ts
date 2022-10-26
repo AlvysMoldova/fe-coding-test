@@ -10,6 +10,5 @@ export class DestroyableComponent implements OnDestroy {
   ngOnDestroy(): void {
     this.destroy$.next(null);
     this.destroy$.complete();
-    this.destroy$.unsubscribe();
   }
 }

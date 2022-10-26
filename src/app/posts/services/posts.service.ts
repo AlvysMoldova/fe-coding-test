@@ -12,4 +12,8 @@ export class PostsService {
       .get('posts')
       .pipe(map((posts) => posts.map((p) => new Post(p))));
   }
+
+  deletePost(id: number) {
+    return this._apiClient.delete(`posts/${id}`);
+  }
 }
